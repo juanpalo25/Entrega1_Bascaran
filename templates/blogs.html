@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Bienvenidos a los Blogs</h1>
-    <h2>Holi {{nombre}}, estas listo?</h2>
-
-    __________________________________________________________
-
+{% extends 'base.html' %}
+{% block nav %}
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="btn btn-primary" href={% url 'home' %} >Home</a>
+                <a class="btn btn-primary" href={% url 'blogs' %}>Blogs</a>
+                <a class="btn btn-primary" href="#signup">Acerca de nosotros</a>
+            </div>
+        </nav>
+{% endblock nav %}
+{% block encabezado %}Bienvenidos a los Blogs{% endblock encabezado %}  
+{% block subencabezado %}<h2>Holi {{nombre}}, estas listo?</h2>{% endblock subencabezado %} 
+{% block listado_blogs %}
     <h2>Listado de blogs</h2>
+    __________________________________________________________
     <ul>
-        <li>{{blog.titulo}}</li>
-        <li>{{blog.caracteres}}</li>
+        {% for objeto in lista_objetos %}
+        <li>{{objeto.titulo}}</li>
+        <li>{{objeto.caracteres}}</li>
+        {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock listado_blogs %}

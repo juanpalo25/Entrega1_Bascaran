@@ -1,20 +1,20 @@
+from ast import Return
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Context, Template, loader
-
-from lectores.models import Blog
+from .models import Blog
 
 
 def home(request):
     return render(request, 'index.html')
 
 def blogs(request):
-    nombre = "Juan"
-    primer_vista = loader.get_template('blogs.html')
-    primer_blog = Blog(titulo='soy un blog', caracteres = 150 )
-    primer_blog.save()
-    primer_render = primer_vista.render({'nombre': nombre, 'blog':primer_blog})
-    return HttpResponse(primer_render)
+    template = loader.get_template('blogs.html')
+    b1 = Blog(titulo='soy el 1er blog', caracteres = 12)
+    b2 = Blog(titulo='soy el 2do blog', caracteres = 45)
+    b3 = Blog(titulo='soy el 3er blog', caracteres = 23)
+    render = template.render({'lista_objetos': [b1,b2,b3]})
+    return HttpResponse(render)
 
 def vista_base(request):
     return render(request, 'base.html')
