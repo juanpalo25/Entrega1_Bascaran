@@ -1,6 +1,8 @@
-from .views import home
+from .views import home, blogs, vista_base
 from django.urls import path
 
 urlpatterns = [
-    path('', home)
+    path('', home),
+    path('blogs/', blogs),
+    path('base/', vista_base)
 ]
