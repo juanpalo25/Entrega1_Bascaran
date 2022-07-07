@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% block titulo %}<title>Crear Blog</title>{% endblock titulo %}
 {% block nav %}
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
@@ -8,15 +10,19 @@
             </div>
         </nav>
 {% endblock nav %}
-{% block encabezado %}Bienvenidos a los Blogs{% endblock encabezado %}  
-{% block subencabezado %}<h2>Holi {{nombre}}, estas listo?</h2>{% endblock subencabezado %} 
+{% block encabezado %}Listo para hacer magia?{% endblock encabezado %}  
+{% block subencabezado %}<h2>Holi, Comencemos!</h2>{% endblock subencabezado %} 
+
 {% block listado_blogs %}
-    <h2>Listado de blogs</h2>
+    <h2>Este esel listado</h2>
     __________________________________________________________
-    <ul>
-        {% for objeto in lista_objetos %}
-        <li>{{objeto.titulo}}</li>
-        <li>{{objeto.caracteres}}</li>
-        {% endfor %}
-    </ul>
+    <div>
+        <p>
+            <ul>
+                {% for blog in listado_blogs %}
+                <li>{{blog}}</li>
+                {% endfor %}
+            </ul>
+        </p>
+    </div>
 {% endblock listado_blogs %}
