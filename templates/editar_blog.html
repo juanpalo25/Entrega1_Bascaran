@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block titulo %}<title>Editar Blog</title>{% endblock titulo %}
+{% block nav %}
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="btn btn-primary" href={% url 'home' %} >Home</a>
+                <a class="btn btn-primary" href={% url 'listado_blogs' %}>Blogs</a>
+                <a class="btn btn-primary" href="#signup">Acerca de nosotros</a>
+            </div>
+        </nav>
+{% endblock nav %}
+{% block encabezado %}Editemos{% endblock encabezado %}  
+{% block subencabezado %}<h2>Holi, Comencemos!</h2>{% endblock subencabezado %} 
+
+{% block listado_blogs %}
+    <h2>Editemos el Blog</h2>
+    __________________________________________________________
+    <div>
+        <form action={% url 'editar_blog' blog.id %} method= "post">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <button action= {% url 'listado_blogs' %}>Editar</button>
+        </form>
+    </div>
+{% endblock listado_blogs %}
