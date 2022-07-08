@@ -1,8 +1,8 @@
 from ast import Return
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.template import Context, Template, loader
-from lectores.forms import FormBlog
+from lectores.forms import Busqueda_blog, FormBlog
 from lectores.models import Blog
 from datetime import datetime
 
@@ -29,15 +29,23 @@ def crear_blog(request):
             blog = Blog(titulo=data.get('titulo'), caracteres=data.get('caracteres'), fecha_creacion = fecha if fecha else datetime.now(), genero=data.get('genero'), autor=data.get('autor'))
             blog.save()
             listado_blogs = Blog.objects.all
-            return render(request, 'listado_blogs.html', {'listado_blogs': listado_blogs})
+            return redirect('listado_blogs')
         else: return render(request, 'crear_blog.html',{'form': form})
     form_blog = FormBlog()
 
     return render(request, 'crear_blog.html',{'form': form_blog})
 
 def listado_blogs(request):
-    listado_blogs = Blog.objects.all
-    return render(request, 'listado_blogs.html', {'listado_blogs': listado_blogs})
+    
+    titulo_busqueda = request.GET.get('titulo')
+
+    if titulo_busqueda:
+        listado_blogs = Blog.objects.filter(titulo__icontains= titulo_busqueda)
+    else:
+        listado_blogs = Blog.objects.all()
+        
+    form = Busqueda_blog()
+    return render(request, 'listado_blogs.html', {'listado_blogs': listado_blogs, 'form':form})
 
 def vista_base(request):
     return render(request, 'base.html')

@@ -6,4 +6,5 @@ class Blog(models.Model):
     fecha_creacion = models.DateField(null=True)
     genero = models.CharField(max_length=25)
     autor = models.CharField(max_length=25)
-
+    def __str__(self):
+        return f'TITULO: {self.titulo}'

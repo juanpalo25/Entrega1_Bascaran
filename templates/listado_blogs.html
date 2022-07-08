@@ -15,14 +15,27 @@
 
 {% block listado_blogs %}
     <h2>Este esel listado</h2>
+
+    <p>
+        <form action={% url 'listado_blogs' %}>
+            {{form}}
+            <button>Buscar</button>
+        </form>
+    </p>
     __________________________________________________________
     <div>
         <p>
+            {% if listado_blogs %}
             <ul>
                 {% for blog in listado_blogs %}
                 <li>{{blog}}</li>
                 {% endfor %}
             </ul>
+            {% else %}
+            No se encontraron datos
+            {% endif %}
+            
         </p>
     </div>
+    <a class="btn btn-primary" href={% url 'crear_blog' %}>crear blog</a>
 {% endblock listado_blogs %}
