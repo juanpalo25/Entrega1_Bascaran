@@ -30,10 +30,10 @@ def crear_blog(request):
             blog.save()
             listado_blogs = Blog.objects.all
             return redirect('listado_blogs')
-        else: return render(request, 'crear_blog.html',{'form': form})
+        else: return render(request, 'blogs/crear_blog.html',{'form': form})
     form_blog = FormBlog()
 
-    return render(request, 'crear_blog.html',{'form': form_blog})
+    return render(request, 'blogs/crear_blog.html',{'form': form_blog})
 
 def listado_blogs(request):
     
@@ -45,7 +45,7 @@ def listado_blogs(request):
         listado_blogs = Blog.objects.all()
         
     form = Busqueda_blog()
-    return render(request, 'listado_blogs.html', {'listado_blogs': listado_blogs, 'form':form})
+    return render(request, 'blogs/listado_blogs.html', {'blogs/listado_blogs': listado_blogs, 'form':form})
 
 def vista_base(request):
     return render(request, 'base.html')
@@ -65,9 +65,9 @@ def editar_blog(request, id):
             blog.save()
             return redirect('listado_blogs')
         else: 
-            return render(request, 'editar_blog.html',{'form': form, 'blog':blog})
+            return render(request, 'blogs/editar_blog.html',{'form': form, 'blog':blog})
     form_blog = FormBlog(initial={'titulo': blog.titulo, 'caracteres': blog.caracteres, 'fecha_creacion':blog.fecha_creacion, 'genero': blog.genero, 'autor': blog.autor})
-    return render(request, 'editar_blog.html', {'form': form_blog, 'blog': blog} )
+    return render(request, 'blogs/editar_blog.html', {'form': form_blog, 'blog': blog} )
 
 
 def eliminar_blog(request, id):
@@ -75,3 +75,7 @@ def eliminar_blog(request, id):
     blog.delete()
      
     return redirect('listado_blogs')
+
+def mostrar_blog(request, id):
+    blog = Blog.objects.get(id = id)
+    return render(request, 'blogs/mostrar_blog.html', {'blog': blog})

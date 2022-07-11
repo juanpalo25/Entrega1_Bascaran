@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block titulo %}<title>Blog elegido</title>{% endblock titulo %}
+{% block nav %}
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="btn btn-primary" href={% url 'home' %} >Home</a>
+                <a class="btn btn-primary" href={% url 'listado_blogs' %}>Blogs</a>
+                <a class="btn btn-primary" href="#signup">Acerca de nosotros</a>
+            </div>
+        </nav>
+{% endblock nav %}
+{% block encabezado %}Este es el Blog que legiste{% endblock encabezado %}  
+{% block subencabezado %}<h2>Que lo disfrutes</h2>{% endblock subencabezado %} 
+
+{% block listado_blogs %}
+<a class="btn btn-primary" href={% url 'listado_blogs' %}>Volver</a>
+
+<ul>
+    <li>{{blog.titulo}}</li>
+    <li>{{blog.caracteres}}</li>
+    <li>{{blog.fecha_vreacion}}</li>
+    <li>{{blog.genero}}</li>
+    <li>{{blog.autor}}</li>
+    
+</ul>
+{% endblock listado_blogs %}

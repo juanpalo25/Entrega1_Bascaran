@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block titulo %}<title>Reseña elegida</title>{% endblock titulo %}
+{% block nav %}
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="btn btn-primary" href={% url 'home' %} >Home</a>
+                <a class="btn btn-primary" href={% url 'listado_blogs' %}>Blogs</a>
+                <a class="btn btn-primary" href="#signup">Acerca de nosotros</a>
+            </div>
+        </nav>
+{% endblock nav %}
+{% block encabezado %}Esta es la reseña que elegiste{% endblock encabezado %}  
+{% block subencabezado %}<h2>Que la disfrutes</h2>{% endblock subencabezado %} 
+
+{% block listado_blogs %}
+<a class="btn btn-primary" href={% url 'listado_resenias' %}>Volver</a>
+
+<ul>
+    <li>{{resenia.pelicula}}</li>
+    <li>{{resenia.sinopsis}}</li>
+    <li>{{resenia.fecha_vreacion}}</li>
+    <li>{{resenia.genero}}</li>
+    <li>{{resenia.director}}</li>
+    
+</ul>
+{% endblock listado_blogs %}

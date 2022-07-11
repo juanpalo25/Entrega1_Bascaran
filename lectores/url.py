@@ -1,4 +1,4 @@
-from .views import home, crear_blog, vista_base, listado_blogs, editar_blog, eliminar_blog
+from .views import home, crear_blog, vista_base, listado_blogs, editar_blog, eliminar_blog, mostrar_blog
 from django.urls import path
 
 
@@ -9,5 +9,7 @@ urlpatterns = [
     path('listado_blogs/', listado_blogs, name='listado_blogs'),
     path('editar_blog/<int:id>', editar_blog, name='editar_blog'),
     path('eliminar_blog/<int:id>', eliminar_blog, name='eliminar_blog'),
+    path('mostar_blog/<int:id>', mostrar_blog, name='mostrar_blog'),
+
 ]
 
